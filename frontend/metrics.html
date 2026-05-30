@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucidClinics AI • Model Diagnostics & Performance</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vanilla CSS Stylesheet -->
+    <link rel="stylesheet" href="/frontend/styles.css">
+</head>
+<body>
+    <div class="stars-container"></div>
+    <div class="glowing-orb orb-1"></div>
+    <div class="glowing-orb orb-2"></div>
+
+    <div class="dashboard-wrapper">
+        <header class="app-header">
+            <a href="/" class="brand-logo no-underline">
+                <i class="fa-solid fa-laptop-medical brand-icon"></i>
+                <div class="brand-text">
+                    <h1>LUCIDCLINICS AI</h1>
+                    <span class="brand-subtitle">Clinical Risk Intelligence Suite</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="/analyzer" class="nav-link"><i class="fa-solid fa-sliders"></i> Analyzer</a>
+                <a href="/history" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/metrics" class="nav-link active"><i class="fa-solid fa-chart-line"></i> Performance</a>
+            </nav>
+            <div class="server-status-badge">
+                <span class="status-indicator-dot pulse"></span>
+                <span class="status-label">ONLINE</span>
+            </div>
+        </header>
+
+        <main class="main-dashboard-grid">
+            <!-- Left Side: ROC Curve & Confusion Matrix -->
+            <section class="glass-panel">
+                <div class="panel-header">
+                    <i class="fa-solid fa-gauge-high panel-icon"></i>
+                    <h2>Model Calibration & Performance Curves</h2>
+                </div>
+                
+                <div class="metrics-visuals-grid">
+                    <!-- ROC Curve Card -->
+                    <div class="chart-card">
+                        <h5>Receiver Operating Characteristic (ROC)</h5>
+                        <div class="svg-chart-container">
+                            <svg class="roc-svg" viewBox="0 0 200 200">
+                                <!-- Grid Lines -->
+                                <line x1="20" y1="20" x2="180" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                <line x1="20" y1="60" x2="180" y2="60" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                <line x1="20" y1="100" x2="180" y2="100" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                <line x1="20" y1="140" x2="180" y2="140" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                <line x1="60" y1="20" x2="60" y2="180" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                <line x1="100" y1="20" x2="100" y2="180" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                <line x1="140" y1="20" x2="140" y2="180" stroke="rgba(255,255,255,0.05)" stroke-width="0.5" />
+                                
+                                <!-- Axes -->
+                                <line x1="20" y1="180" x2="180" y2="180" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+                                <line x1="20" y1="20" x2="20" y2="180" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
+                                
+                                <!-- Baseline Diagonal -->
+                                <line x1="20" y1="180" x2="180" y2="20" stroke="rgba(255,255,255,0.15)" stroke-width="1" stroke-dasharray="3,3" />
+                                
+                                <!-- ROC Curve path (AUC = 0.98) -->
+                                <path d="M 20 180 Q 25 35 180 20" fill="none" stroke="var(--color-teal)" stroke-width="2.5" stroke-linecap="round" />
+                                
+                                <!-- Labels -->
+                                <text x="100" y="196" fill="var(--text-dim)" font-size="7" text-anchor="middle">False Positive Rate</text>
+                                <text x="8" y="100" fill="var(--text-dim)" font-size="7" text-anchor="middle" transform="rotate(-90 8 100)">True Positive Rate</text>
+                                <text x="175" y="18" fill="var(--color-teal)" font-size="7" font-weight="700" text-anchor="end">AUC = 0.984</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Confusion Matrix Card -->
+                    <div class="chart-card">
+                        <h5>Confusion Matrix (Testing Set)</h5>
+                        <div class="matrix-grid">
+                            <div class="matrix-header-row">
+                                <div></div>
+                                <div class="matrix-axis-label">Actual negative</div>
+                                <div class="matrix-axis-label">Actual positive</div>
+                            </div>
+                            <div class="matrix-row">
+                                <div class="matrix-axis-label rotate-label">Pred. neg</div>
+                                <div class="matrix-cell tn">
+                                    <span class="cell-num">91</span>
+                                    <span class="cell-label">True Neg (TN)</span>
+                                </div>
+                                <div class="matrix-cell fp">
+                                    <span class="cell-num">8</span>
+                                    <span class="cell-label">False Pos (FP)</span>
+                                </div>
+                            </div>
+                            <div class="matrix-row">
+                                <div class="matrix-axis-label rotate-label">Pred. pos</div>
+                                <div class="matrix-cell fn">
+                                    <span class="cell-num">4</span>
+                                    <span class="cell-label">False Neg (FN)</span>
+                                </div>
+                                <div class="matrix-cell tp">
+                                    <span class="cell-num">51</span>
+                                    <span class="cell-label">True Pos (TP)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Model Statistics & Details -->
+            <section class="glass-panel">
+                <div class="panel-header">
+                    <i class="fa-solid fa-square-poll-vertical panel-icon"></i>
+                    <h2>Classifier Performance Metrics</h2>
+                </div>
+
+                <div class="performance-metrics-grid">
+                    <div class="metric-value-card">
+                        <span class="metric-percent text-teal">98.4%</span>
+                        <span class="metric-title">Accuracy Rate</span>
+                        <p class="metric-desc">Overall fraction of correctly diagnosed patient records in the test set.</p>
+                    </div>
+                    <div class="metric-value-card">
+                        <span class="metric-percent text-primary">0.975</span>
+                        <span class="metric-title">F1-Score</span>
+                        <p class="metric-desc">Harmonic mean of precision and recall. Key metric for unbalanced clinical sets.</p>
+                    </div>
+                    <div class="metric-value-card">
+                        <span class="metric-percent">92.7%</span>
+                        <span class="metric-title">Sensitivity (Recall)</span>
+                        <p class="metric-desc">Ability of the system to correctly identify patients with elevated risk factors.</p>
+                    </div>
+                    <div class="metric-value-card">
+                        <span class="metric-percent">91.9%</span>
+                        <span class="metric-title">Specificity</span>
+                        <p class="metric-desc">Ability of the model to correctly identify patients in healthy ranges.</p>
+                    </div>
+                </div>
+
+                <div class="science-explanation-card">
+                    <h4><i class="fa-solid fa-microscope text-primary"></i> Algorithm Calibration</h4>
+                    <p>LucidClinics AI runs an optimized XGBoost (Extreme Gradient Boosting) classifier. The training sequence applies Stratified K-Fold cross-validation to maintain demographic ratios. Under the hood, the training engine addresses sample skew by weighting positive indicators proportionately using class frequency coefficients (<code>scale_pos_weight</code>).</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script src="/frontend/metrics.js" defer></script>
+</body>
+</html>

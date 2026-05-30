@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucidClinics AI • Diagnostic Report Analysis</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vanilla CSS Stylesheet -->
+    <link rel="stylesheet" href="/frontend/styles.css">
+</head>
+<body>
+    <div class="stars-container text-hidden-print"></div>
+    <div class="glowing-orb orb-1 text-hidden-print"></div>
+    <div class="glowing-orb orb-2 text-hidden-print"></div>
+
+    <div class="dashboard-wrapper">
+        <header class="app-header text-hidden-print">
+            <a href="/" class="brand-logo no-underline">
+                <i class="fa-solid fa-laptop-medical brand-icon"></i>
+                <div class="brand-text">
+                    <h1>LUCIDCLINICS AI</h1>
+                    <span class="brand-subtitle">Clinical Risk Intelligence Suite</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="/analyzer" class="nav-link"><i class="fa-solid fa-sliders"></i> Analyzer</a>
+                <a href="/history" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/metrics" class="nav-link"><i class="fa-solid fa-chart-line"></i> Performance</a>
+            </nav>
+            <div class="server-status-badge">
+                <span class="status-indicator-dot pulse"></span>
+                <span class="status-label">ONLINE</span>
+            </div>
+        </header>
+
+        <!-- Printable Patient Header -->
+        <section class="patient-info-banner glass-panel">
+            <div class="printable-hospital-header">
+                <h2>LUCIDCLINICS AI DIAGNOSTIC REPORT</h2>
+                <span>Clinical Decision Support System Screening</span>
+            </div>
+            <div class="patient-meta-grid">
+                <div class="meta-item">
+                    <span class="meta-label">Patient Name:</span>
+                    <span class="meta-val" id="report-patient-name">Jane Doe</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Record Number (MRN):</span>
+                    <span class="meta-val" id="report-patient-mrn">MRN-2026-894</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Date Screened:</span>
+                    <span class="meta-val" id="report-patient-date">May 30, 2026</span>
+                </div>
+            </div>
+            <div class="patient-notes-wrapper" id="report-patient-notes-container">
+                <span class="meta-label">Clinical Notes:</span>
+                <p class="notes-text" id="report-patient-notes">No symptoms reported.</p>
+            </div>
+        </section>
+
+        <main class="main-dashboard-grid">
+            <!-- Results & Explanations Panel -->
+            <section class="glass-panel results-panel">
+                <div class="panel-header flex-header text-hidden-print">
+                    <div class="panel-title-wrapper">
+                        <i class="fa-solid fa-square-poll-vertical panel-icon"></i>
+                        <h2>Risk Prediction Analysis</h2>
+                    </div>
+                    <div class="report-actions-wrapper">
+                        <button type="button" class="save-history-btn" id="save-history-btn" title="Save Case to History">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Save to History
+                        </button>
+                        <button type="button" class="export-btn" id="export-report-btn" title="Export Patient Report">
+                            <i class="fa-solid fa-file-export"></i> Export Report
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="prediction-view">
+                    <!-- Risk Gauge -->
+                    <div class="risk-gauge-container">
+                        <svg class="risk-gauge" viewBox="0 0 100 100">
+                            <circle class="gauge-bg" cx="50" cy="50" r="40"></circle>
+                            <circle class="gauge-fill" id="gauge-fill-ring" cx="50" cy="50" r="40" stroke-dasharray="251.2" stroke-dashoffset="251.2"></circle>
+                        </svg>
+                        <div class="gauge-text-container">
+                            <span class="risk-value" id="ui-risk-percentage">0%</span>
+                            <span class="risk-sub-label">Diabetes Risk</span>
+                        </div>
+                    </div>
+
+                    <!-- Risk Alert Message -->
+                    <div class="risk-status-card" id="ui-risk-status-card">
+                        <div class="status-header">
+                            <i class="fa-solid fa-shield-halved status-icon" id="ui-status-icon"></i>
+                            <h3 id="ui-risk-label">Diagnostic Analysis</h3>
+                        </div>
+                        <p id="ui-risk-description">Processing clinical vectors...</p>
+                    </div>
+                </div>
+
+                <!-- Retrieved Clinical Guidelines (RAG Context) -->
+                <div class="guidelines-card" id="ui-guidelines-card">
+                    <div class="guidelines-header">
+                        <i class="fa-solid fa-book-medical guidelines-icon"></i>
+                        <h3>Matched Medical Guidelines (RAG Database)</h3>
+                    </div>
+                    <ul class="guidelines-list" id="ui-guidelines-list">
+                        <li><i class="fa-solid fa-circle-info info-icon"></i> No guidelines retrieved yet.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Model Explainability (SHAP Values) -->
+            <section class="glass-panel shap-panel">
+                <div class="panel-header flex-header text-hidden-print">
+                    <div class="panel-title-wrapper">
+                        <i class="fa-solid fa-chart-bar panel-icon"></i>
+                        <h2>SHAP Diagnostics</h2>
+                    </div>
+                    <button type="button" class="info-trigger-btn" id="shap-info-trigger" title="What is SHAP?">
+                        <i class="fa-solid fa-circle-info"></i> Explain SHAP
+                    </button>
+                </div>
+                
+                <div class="shap-chart-container">
+                    <div class="shap-chart-headers">
+                        <span>Decreases Diabetes Risk</span>
+                        <span>Increases Diabetes Risk</span>
+                    </div>
+                    <div class="shap-chart" id="ui-shap-chart">
+                        <!-- Bars dynamically rendered -->
+                    </div>
+                </div>
+
+                <!-- Top Risk Drivers Breakdown -->
+                <div class="drivers-card" id="ui-drivers-card">
+                    <h4><i class="fa-solid fa-circle-exclamation text-warning"></i> Primary Risk Drivers</h4>
+                    <ul class="drivers-list" id="ui-drivers-list">
+                        <li><span class="bullet-no">1</span> Processing risk driver contribution data...</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Action Footer -->
+        <footer class="report-footer flex-header text-hidden-print">
+            <div class="footer-actions">
+                <a href="/analyzer" class="submit-btn secondary-btn no-underline">
+                    <i class="fa-solid fa-rotate-left"></i> Run Another Profile Analysis
+                </a>
+                <button type="button" class="print-trigger-btn" onclick="window.print()">
+                    <i class="fa-solid fa-print"></i> Print Document
+                </button>
+            </div>
+            <span class="confidential-badge"><i class="fa-solid fa-user-shield"></i> Protected HIPAA/HIPED Screening Data</span>
+        </footer>
+    </div>
+
+    <!-- SHAP Explainability Modal -->
+    <div class="modal-overlay" id="shap-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="shap-modal-close">&times;</button>
+            <div class="modal-header">
+                <i class="fa-solid fa-brain modal-header-icon"></i>
+                <h3>SHAP Explainability Diagnostics</h3>
+            </div>
+            <div class="modal-body">
+                <p><strong>SHAP (SHapley Additive exPlanations)</strong> values explain how much each clinical measurement shifts the patient's risk probability relative to an average baseline dataset prediction.</p>
+                <div class="modal-explainer-grid">
+                    <div class="explainer-card danger-border">
+                        <h4 class="text-danger"><i class="fa-solid fa-arrow-trend-up"></i> Positive Contribution</h4>
+                        <p>Parameters that are elevated or critical, driving the patient's predicted risk score **higher** (represented by the Coral/Red bars).</p>
+                    </div>
+                    <div class="explainer-card teal-border">
+                        <h4 class="text-teal"><i class="fa-solid fa-arrow-trend-down"></i> Negative Contribution</h4>
+                        <p>Parameters in a healthy/normal range that act as protective factors, pulling the risk score **lower** (represented by the Teal/Green bars).</p>
+                    </div>
+                </div>
+                <p class="modal-footer-note"><i class="fa-solid fa-circle-question"></i> The length of each bar indicates the magnitude of that parameter's influence on the overall diagnostic output.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast-notification" class="toast-wrapper">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span id="toast-message">Report saved successfully!</span>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script src="/frontend/report.js" defer></script>
+</body>
+</html>

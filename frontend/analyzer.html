@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucidClinics AI • Diabetes Risk Analyzer</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vanilla CSS Stylesheet -->
+    <link rel="stylesheet" href="/frontend/styles.css">
+</head>
+<body>
+    <div class="stars-container"></div>
+    <div class="glowing-orb orb-1"></div>
+    <div class="glowing-orb orb-2"></div>
+
+    <div class="dashboard-wrapper">
+        <header class="app-header">
+            <a href="/" class="brand-logo no-underline">
+                <i class="fa-solid fa-laptop-medical brand-icon"></i>
+                <div class="brand-text">
+                    <h1>LUCIDCLINICS AI</h1>
+                    <span class="brand-subtitle">Clinical Risk Intelligence Suite</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="/analyzer" class="nav-link active"><i class="fa-solid fa-sliders"></i> Analyzer</a>
+                <a href="/history" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/metrics" class="nav-link"><i class="fa-solid fa-chart-line"></i> Performance</a>
+            </nav>
+            <div class="server-status-badge">
+                <span class="status-indicator-dot pulse"></span>
+                <span class="status-label">ONLINE</span>
+            </div>
+        </header>
+
+        <!-- Profile Presets Bar -->
+        <section class="presets-section">
+            <div class="section-title-wrapper">
+                <i class="fa-solid fa-address-card section-title-icon"></i>
+                <h2>Select Patient Profile Preset</h2>
+            </div>
+            <div class="presets-grid">
+                <button class="preset-btn" data-preset="healthy" type="button">
+                    <div class="preset-icon-wrapper success"><i class="fa-solid fa-heart-pulse"></i></div>
+                    <div class="preset-details">
+                        <span class="preset-name">Healthy Profile</span>
+                        <span class="preset-desc">Young adult, low risk parameters</span>
+                    </div>
+                </button>
+                <button class="preset-btn" data-preset="high_risk" type="button">
+                    <div class="preset-icon-wrapper danger"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                    <div class="preset-details">
+                        <span class="preset-name">High Risk Case</span>
+                        <span class="preset-desc">Impaired glucose & elevated BMI</span>
+                    </div>
+                </button>
+                <button class="preset-btn" data-preset="borderline" type="button">
+                    <div class="preset-icon-wrapper warning"><i class="fa-solid fa-circle-info"></i></div>
+                    <div class="preset-details">
+                        <span class="preset-name">Borderline Case</span>
+                        <span class="preset-desc">Elevated glucose & age factors</span>
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <form id="prediction-form" class="clinical-form">
+            <main class="analyzer-grid">
+                <!-- Column 1: Patient Demographics -->
+                <section class="glass-panel form-group-card">
+                    <div class="panel-header">
+                        <i class="fa-solid fa-id-card panel-icon"></i>
+                        <h2>Patient Demographics</h2>
+                    </div>
+                    <div class="demographics-form-inputs">
+                        <div class="form-group text-input-group">
+                            <label for="patient-name">Patient Full Name</label>
+                            <input type="text" id="patient-name" required placeholder="e.g. Jane Doe">
+                        </div>
+                        <div class="form-group text-input-group">
+                            <label for="patient-mrn">Medical Record Number (MRN)</label>
+                            <input type="text" id="patient-mrn" required placeholder="e.g. MRN-2026-894">
+                        </div>
+                        <div class="form-group text-input-group">
+                            <label for="patient-notes">Clinical Observational Notes</label>
+                            <textarea id="patient-notes" placeholder="Enter clinical notes, signs, or symptoms..."></textarea>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Column 2: Vitals & History -->
+                <section class="glass-panel form-group-card">
+                    <div class="panel-header">
+                        <i class="fa-solid fa-heart-pulse panel-icon"></i>
+                        <h2>Vitals & Medical History</h2>
+                    </div>
+                    <div class="slider-group-inputs">
+                        <!-- Pregnancies -->
+                        <div class="form-group">
+                            <div class="label-wrapper">
+                                <label for="pregnancies">Pregnancies</label>
+                                <div class="value-badge-group">
+                                    <span class="status-badge" id="status-pregnancies">Normal</span>
+                                    <span class="range-value" id="val-pregnancies">2</span>
+                                </div>
+                            </div>
+                            <input type="range" id="pregnancies" name="pregnancies" min="0" max="20" step="1" value="2">
+                            <span class="input-subtitle">Number of times pregnant</span>
+                        </div>
+
+                        <!-- Blood Pressure -->
+                        <div class="form-group">
+                            <div class="label-wrapper">
+                                <label for="blood_pressure">Blood Pressure (mm Hg)</label>
+                                <div class="value-badge-group">
+                                    <span class="status-badge" id="status-blood_pressure">Normal</span>
+                                    <span class="range-value" id="val-blood_pressure">72.0</span>
+                                </div>
+                            </div>
+                            <input type="range" id="blood_pressure" name="blood_pressure" min="0" max="200" step="2" value="72">
+                            <span class="input-subtitle">Diastolic blood pressure</span>
+                        </div>
+
+                        <!-- BMI -->
+                        <div class="form-group">
+                            <div class="label-wrapper">
+                                <label for="bmi">BMI (kg/m²)</label>
+                                <div class="value-badge-group">
+                                    <span class="status-badge" id="status-bmi">Normal</span>
+                                    <span class="range-value" id="val-bmi">28.4</span>
+                                </div>
+                            </div>
+                            <input type="range" id="bmi" name="bmi" min="0" max="70" step="0.1" value="28.4">
+                            <span class="input-subtitle">Body Mass Index score</span>
+                        </div>
+
+                        <!-- Age -->
+                        <div class="form-group">
+                            <div class="label-wrapper">
+                                <label for="age">Age (Years)</label>
+                                <div class="value-badge-group">
+                                    <span class="status-badge" id="status-age">Normal</span>
+                                    <span class="range-value" id="val-age">34</span>
+                                </div>
+                            </div>
+                            <input type="range" id="age" name="age" min="0" max="120" step="1" value="34">
+                            <span class="input-subtitle">Patient chronological age</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Column 3: Lab Diagnostics -->
+                <section class="glass-panel form-group-card">
+                    <div class="panel-header">
+                        <i class="fa-solid fa-flask panel-icon"></i>
+                        <h2>Laboratory Parameters</h2>
+                    </div>
+                    <div class="slider-group-inputs">
+                        <!-- Glucose -->
+                        <div class="form-group">
+                            <div class="label-wrapper">
+                                <label for="glucose">Glucose (mg/dL)</label>
+                                <div class="value-badge-group">
+                                    <span class="status-badge" id="status-glucose">Normal</span>
+                                    <span class="range-value" id="val-glucose">130.0</span>
+                                </div>
+                            </div>
+                            <input type="range" id="glucose" name="glucose" min="0" max="300" step="1" value="130">
+                            <span class="input-subtitle">Plasma glucose concentration</span>
+                        </div>
+
+                        <!-- Skin Thickness -->
+                        <div class="form-group">
+                            <div class="label-wrapper">
+                                <label for="skin_thickness">Skin Thickness (mm)</label>
+                                <div class="value-badge-group">
+                                    <span class="status-badge" id="status-skin_thickness">Normal</span>
+                                    <span class="range-value" id="val-skin_thickness">20.0</span>
+                                </div>
+                            </div>
+                            <input type="range" id="skin_thickness" name="skin_thickness" min="0" max="100" step="1" value="20">
+                            <span class="input-subtitle">Triceps skin fold thickness</span>
+                        </div>
+
+                        <!-- Insulin -->
+                        <div class="form-group">
+                            <div class="label-wrapper">
+                                <label for="insulin">Insulin (mu U/ml)</label>
+                                <div class="value-badge-group">
+                                    <span class="status-badge" id="status-insulin">Normal</span>
+                                    <span class="range-value" id="val-insulin">85.0</span>
+                                </div>
+                            </div>
+                            <input type="range" id="insulin" name="insulin" min="0" max="900" step="5" value="85">
+                            <span class="input-subtitle">2-Hour serum insulin level</span>
+                        </div>
+
+                        <!-- Diabetes Pedigree -->
+                        <div class="form-group">
+                            <div class="label-wrapper">
+                                <label for="diabetes_pedigree">Diabetes Pedigree</label>
+                                <div class="value-badge-group">
+                                    <span class="status-badge" id="status-diabetes_pedigree">Normal</span>
+                                    <span class="range-value" id="val-diabetes_pedigree">0.45</span>
+                                </div>
+                            </div>
+                            <input type="range" id="diabetes_pedigree" name="diabetes_pedigree" min="0" max="2.5" step="0.01" value="0.45">
+                            <span class="input-subtitle">Diabetes pedigree function score</span>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- Sticky submit footer for better flow -->
+            <footer class="analyzer-footer glass-panel flex-header">
+                <div class="simulator-toggle-container">
+                    <span class="toggle-label"><i class="fa-solid fa-bolt pulse-icon"></i> Live Simulator</span>
+                    <label class="switch">
+                        <input type="checkbox" id="simulator-toggle" checked>
+                        <span class="switch-slider round"></span>
+                    </label>
+                </div>
+                <button type="submit" class="submit-btn large-submit-btn">
+                    <i class="fa-solid fa-stethoscope"></i> Analyze Parameters & Generate Diagnostic Report
+                </button>
+            </footer>
+        </form>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script src="/frontend/analyzer.js" defer></script>
+</body>
+</html>

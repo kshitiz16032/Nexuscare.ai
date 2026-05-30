@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucidClinics AI • Clinical Risk Intelligence Suite</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vanilla CSS Stylesheet -->
+    <link rel="stylesheet" href="/frontend/styles.css">
+</head>
+<body>
+    <div class="stars-container"></div>
+    <div class="glowing-orb orb-1"></div>
+    <div class="glowing-orb orb-2"></div>
+
+    <div class="landing-wrapper">
+        <!-- Landing Header -->
+        <header class="landing-header">
+            <div class="brand-logo">
+                <i class="fa-solid fa-laptop-medical brand-icon"></i>
+                <div class="brand-text">
+                    <h1>LUCIDCLINICS AI</h1>
+                    <span class="brand-subtitle">Clinical Risk Intelligence Suite</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <a href="/" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="/analyzer" class="nav-link"><i class="fa-solid fa-sliders"></i> Analyzer</a>
+                <a href="/history" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/metrics" class="nav-link"><i class="fa-solid fa-chart-line"></i> Performance</a>
+            </nav>
+            <a href="/analyzer" class="launch-btn-small">Launch Analyzer <i class="fa-solid fa-arrow-right"></i></a>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <span class="badge-premium"><i class="fa-solid fa-sparkles"></i> NEXT-GENERATION DIAGNOSTICS</span>
+                <h2>Decisions Guided by <br><span class="gradient-text">Clinical Machine Intelligence</span></h2>
+                <p>LucidClinics AI integrates predictive machine learning, mathematical model explainability, and secure RAG-based medical databases to aid clinical decision support workflows with empathy.</p>
+                <div class="hero-actions">
+                    <a href="/analyzer" class="launch-btn-large">
+                        <i class="fa-solid fa-heart-pulse"></i> Launch Risk Analyzer
+                    </a>
+                    <a href="#science" class="learn-more-btn">Science & Methodology <i class="fa-solid fa-chevron-down"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-num" id="stat-accuracy">0%</span>
+                    <span class="stat-label">Model Accuracy</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num" id="stat-guidelines">0+</span>
+                    <span class="stat-label">RAG Clinical Guidelines</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num" id="stat-latency">0ms</span>
+                    <span class="stat-label">Inference Latency</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-num" id="stat-encryption">100%</span>
+                    <span class="stat-label">HIPAA Security Standard</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Showcase Section -->
+        <section id="features" class="features-section">
+            <div class="section-title">
+                <span>SYSTEM ARCHITECTURE</span>
+                <h3>Suite Features & Integration Layers</h3>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fa-solid fa-network-wired feature-icon"></i>
+                    <h4>Predictive ML Engine</h4>
+                    <p>Leverages a calibrated XGBoost classifier trained on historical clinical metrics, utilizing synthetic balancing algorithms to maximize screening precision.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-chart-line feature-icon"></i>
+                    <h4>SHAP Explainability</h4>
+                    <p>Features real-time Shapley additive explanation calculations, showing positive and negative feature contributions so clinicians can dissect the "why" behind the risk score.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-database feature-icon"></i>
+                    <h4>RAG Document Database</h4>
+                    <p>Uses local semantic embeddings via ChromaDB and Sentence-Transformers to retrieve matching medical indicators and clinical guidelines based on patient risk drivers.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-brain feature-icon"></i>
+                    <h4>Clinical Narrative Scribe</h4>
+                    <p>Translates complex diagnostics and numeric parameters into a supportive patient narrative, utilizing LLM synthesis grounded in fetched reference guidelines.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Science & Methodology Section -->
+        <section id="science" class="science-section glass-panel">
+            <div class="science-header">
+                <i class="fa-solid fa-flask-vial science-icon text-teal"></i>
+                <h3>Clinical Foundation & Technical Methodology</h3>
+            </div>
+            <div class="science-body-grid">
+                <div class="science-text-card">
+                    <h5><i class="fa-solid fa-database text-teal"></i> The Dataset (Pima Indian Cohort)</h5>
+                    <p>The predictive model is calibrated using the National Institute of Diabetes and Digestive and Kidney Diseases database. The cohort consists of female patients of Pima Indian heritage. Features include clinical metrics such as Glucose tolerance, Diastolic blood pressure, BMI, and Insulin levels to predict risk outcomes.</p>
+                </div>
+                <div class="science-text-card">
+                    <h5><i class="fa-solid fa-square-root-variable text-primary"></i> SHAP Mathematical Explainability</h5>
+                    <p>Unlike standard black-box machine learning engines, LucidClinics AI implements cooperative game theory Shapley values. Every parameter is assigned an additive contribution score, representing how much that specific metric shifts the individual prediction from the baseline expected value of the training set.</p>
+                </div>
+                <div class="science-text-card">
+                    <h5><i class="fa-solid fa-magnifying-glass-chart text-warning"></i> Guidelines Retrieval (RAG)</h5>
+                    <p>Upon identifying the patient's primary risk driver, the backend performs a semantic vector search on ChromaDB. The system calculates cosine similarity embeddings using <code>all-MiniLM-L6-v2</code> to retrieve targeted guidelines from the American Diabetes Association (ADA).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Landing Footer -->
+        <footer class="landing-footer">
+            <div class="footer-brand">
+                <i class="fa-solid fa-laptop-medical brand-icon-small"></i>
+                <span>LucidClinics AI &copy; 2026. Internal Clinical Diagnostic Screening Tool.</span>
+            </div>
+            <div class="footer-links">
+                <span>HIPAA Compliant</span>
+                <span>•</span>
+                <span>FHIR Compatible</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script src="/frontend/landing.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+# Python Virtual Environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python caching & bytecode
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Local Database / Vector DB
+backend/chroma_db/
+vdb_storage/
+
+# Trained Machine Learning Models (Optional to ignore if retrained during deploy)
+# xgboost_diabetes_model.pkl
+
+# IDE / Editor folders
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db

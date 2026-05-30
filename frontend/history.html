@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LucidClinics AI • Saved Case Registry</title>
+    <!-- Google Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vanilla CSS Stylesheet -->
+    <link rel="stylesheet" href="/frontend/styles.css">
+</head>
+<body>
+    <div class="stars-container"></div>
+    <div class="glowing-orb orb-1"></div>
+    <div class="glowing-orb orb-2"></div>
+
+    <div class="dashboard-wrapper">
+        <header class="app-header">
+            <a href="/" class="brand-logo no-underline">
+                <i class="fa-solid fa-laptop-medical brand-icon"></i>
+                <div class="brand-text">
+                    <h1>LUCIDCLINICS AI</h1>
+                    <span class="brand-subtitle">Clinical Risk Intelligence Suite</span>
+                </div>
+            </a>
+            <nav class="main-nav">
+                <a href="/" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="/analyzer" class="nav-link"><i class="fa-solid fa-sliders"></i> Analyzer</a>
+                <a href="/history" class="nav-link active"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                <a href="/metrics" class="nav-link"><i class="fa-solid fa-chart-line"></i> Performance</a>
+            </nav>
+            <div class="server-status-badge">
+                <span class="status-indicator-dot pulse"></span>
+                <span class="status-label">ONLINE</span>
+            </div>
+        </header>
+
+        <main class="single-layout-wrapper">
+            <section class="glass-panel full-width-panel">
+                <div class="panel-header flex-header">
+                    <div class="panel-title-wrapper">
+                        <i class="fa-solid fa-clock-rotate-left panel-icon"></i>
+                        <h2>Saved Patient Case Registry</h2>
+                    </div>
+                    <div class="search-bar-container">
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                        <input type="text" id="history-search" placeholder="Search by patient name or ID...">
+                    </div>
+                </div>
+
+                <div class="history-table-container">
+                    <table class="history-table" id="ui-history-table">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Record ID</th>
+                                <th>Date Analyzed</th>
+                                <th>Risk Score</th>
+                                <th>Diagnostic Status</th>
+                                <th class="text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ui-history-tbody">
+                            <!-- JS loaded rows -->
+                        </tbody>
+                    </table>
+
+                    <div class="history-empty-state" id="ui-history-empty" style="display: none;">
+                        <i class="fa-solid fa-folder-open empty-icon"></i>
+                        <h3>No Saved Patient Cases Found</h3>
+                        <p>Generate clinical predictions in the Risk Analyzer and save them to registry history for longitudinal tracking.</p>
+                        <a href="/analyzer" class="submit-btn inline-btn no-underline"><i class="fa-solid fa-sliders"></i> Open Risk Analyzer</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast-notification" class="toast-wrapper">
+        <i class="fa-solid fa-circle-check toast-icon"></i>
+        <span id="toast-message">Report saved successfully!</span>
+    </div>
+
+    <!-- Script Entrypoint -->
+    <script src="/frontend/history.js" defer></script>
+</body>
+</html>
